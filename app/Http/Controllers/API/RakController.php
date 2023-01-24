@@ -58,4 +58,48 @@ class RakController extends Controller
             ]
         );
     }
+
+    public function update(Request $request, $id)
+    {
+        $rak = Rak::find($id);
+        if (!$rak) {
+            return response()->json(
+                [
+                    'status' => false,
+                    'message' => 'rak not found'
+                ],
+                404
+            );
+        }
+
+        $rak->update($request->all());
+        return response()->json(
+            [
+                'status' => true,
+                'data' => $rak
+            ]
+        );
+    }
+
+    public function delete($id)
+    {
+        $rak = Rak::find($id);
+        if (!$rak) {
+            return response()->json(
+                [
+                    'status' => false,
+                    'message' => 'rak not found'
+                ],
+                404
+            );
+        }
+
+        $rak->delete();
+        return response()->json(
+            [
+                'status' => true,
+                'data' => 'data succcessfully deleted'
+            ]
+        );
+    }
 }

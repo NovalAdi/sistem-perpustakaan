@@ -46,6 +46,8 @@ Route::delete('/penerbit/{id}', [PenerbitController::class, 'delete']);
 Route::post('/rak', [RakController::class, 'create']);
 Route::get('/rak', [RakController::class, 'index']);
 Route::get('/rak/{id}', [RakController::class, 'show']);
+Route::post('/rak/update/{id}', [RakController::class, 'update']);
+Route::delete('/rak/{id}', [RakController::class, 'delete']);
 
 Route::post('/buku', [BukusController::class, 'create']);
 Route::get('/buku', [BukusController::class, 'index']);

@@ -59,4 +59,48 @@ class PenerbitController extends Controller
             ]
         );
     }
+
+    public function update(Request $request, $id)
+    {
+        $penerbit = Penerbit::find($id);
+        if (!$penerbit) {
+            return response()->json(
+                [
+                    'status' => false,
+                    'message' => 'penerbit not found'
+                ],
+                404
+            );
+        }
+
+        $penerbit->update($request->all());
+        return response()->json(
+            [
+                'status' => true,
+                'data' => $penerbit
+            ]
+        );
+    }
+
+    public function delete($id)
+    {
+        $penerbit = Penerbit::find($id);
+        if (!$penerbit) {
+            return response()->json(
+                [
+                    'status' => false,
+                    'message' => 'penerbit not found'
+                ],
+                404
+            );
+        }
+
+        $penerbit->delete();
+        return response()->json(
+            [
+                'status' => true,
+                'data' => 'data succcessfully deleted'
+            ]
+        );
+    }
 }

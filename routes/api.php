@@ -36,6 +36,8 @@ Route::get('/pengarang/{id}', [PengarangController::class, 'show']);
 Route::post('/penerbit', [PenerbitController::class, 'create']);
 Route::get('/penerbit', [PenerbitController::class, 'index']);
 Route::get('/penerbit/{id}', [PenerbitController::class, 'show']);
+Route::post('/penerbit/update/{id}', [PenerbitController::class, 'update']);
+Route::delete('/penerbit/{id}', [PenerbitController::class, 'delete']);
 
 Route::post('/rak', [RakController::class, 'create']);
 Route::get('/rak', [RakController::class, 'index']);

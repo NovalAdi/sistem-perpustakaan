@@ -9,6 +9,38 @@ use Illuminate\Support\Facades\Validator;
 
 class AnggotaController extends Controller
 {
+    public function index()
+    {
+        $anggota = Anggota::all();
+        return response()->json(
+            [
+                'status' => true,
+                'data' => $anggota
+            ]
+        );
+    }
+
+    public function show($id)
+    {
+        $anggota = Anggota::find($id);
+        if (!$anggota) {
+            return response()->json(
+                [
+                    'status' => false,
+                    'message' => 'anggota not found'
+                ],
+                404
+            );
+        }
+
+        return response()->json(
+            [
+                'status' => true,
+                'data' => $anggota
+            ]
+        );
+    }
+
     public function create(Request $request)
     {
         $input = $request->all();

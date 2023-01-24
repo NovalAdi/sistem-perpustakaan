@@ -9,6 +9,38 @@ use Illuminate\Support\Facades\Validator;
 
 class PetugasController extends Controller
 {
+    public function index()
+    {
+        $petugas = Petugas::all();
+        return response()->json(
+            [
+                'status' => true,
+                'data' => $petugas
+            ]
+        );
+    }
+
+    public function show($id)
+    {
+        $petugas = Petugas::find($id);
+        if (!$petugas) {
+            return response()->json(
+                [
+                    'status' => false,
+                    'message' => 'petugas not found'
+                ],
+                404
+            );
+        }
+
+        return response()->json(
+            [
+                'status' => true,
+                'data' => $petugas
+            ]
+        );
+    }
+
     public function create(Request $request)
     {
         $input = $request->all();

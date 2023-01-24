@@ -26,6 +26,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/petugas', [PetugasController::class, 'create']);
+Route::get('/petugas', [PetugasController::class, 'index']);
+Route::get('/petugas/{id}', [PetugasController::class, 'show']);
+
 
 Route::post('/pengarang', [PengarangController::class, 'create']);
 Route::get('/pengarang', [PengarangController::class, 'index']);
@@ -44,6 +47,8 @@ Route::get('/buku', [BukusController::class, 'index']);
 Route::get('/buku/{id}', [BukusController::class, 'show']);
 
 Route::post('/anggota', [AnggotaController::class, 'create']);
+Route::get('/anggota', [AnggotaController::class, 'index']);
+Route::get('/anggota/{id}', [AnggotaController::class, 'show']);
 
 Route::post('/peminjaman', [PeminjamanController::class, 'create']);
 Route::get('/peminjaman', [PeminjamanController::class, 'index']);

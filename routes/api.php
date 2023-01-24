@@ -70,6 +70,8 @@ Route::get('/peminjamandetail/{id}', [PeminjamanDetailController::class, 'show']
 Route::post('/pengembalian', [PengembalianController::class, 'create']);
 Route::get('/pengembalian', [PengembalianController::class, 'index']);
 Route::get('/pengembalian/{id}', [PengembalianController::class, 'show']);
+Route::post('/pengembalian/update/{id}', [PengembalianController::class, 'update']);
+Route::delete('/pengembalian/{id}', [PengembalianController::class, 'delete']);
 
 Route::post('/pengembaliandetail', [PengembalianDetailController::class, 'create']);
 Route::get('/pengembaliandetail', [PengembalianDetailController::class, 'index']);

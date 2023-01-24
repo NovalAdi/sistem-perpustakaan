@@ -118,4 +118,89 @@ class PengembalianController extends Controller
             ]
         );
     }
+
+    public function update(Request $request, $id)
+    {
+        $input = $request->all();
+
+        $pengembalian = Pengembalian::find($id);
+        if (!$pengembalian) {
+            return response()->json(
+                [
+                    'status' => false,
+                    'message' => 'pengembalian not found'
+                ],
+                404
+            );
+        }
+
+        if (isset($input['peminjaman_id'])) {
+            $peminjaman = Peminjaman::find($input['peminjaman_id']);
+            if (!$peminjaman) {
+                return response()->json(
+                    [
+                        'status' => false,
+                        'message' => 'peminjaman not found'
+                    ],
+                    404
+                );
+            }
+        }
+
+        if (isset($input['anggota_id'])) {
+            $anggota = Anggota::find($input['anggota_id']);
+            if (!$anggota) {
+                return response()->json(
+                    [
+                        'status' => false,
+                        'message' => 'anggota not found'
+                    ],
+                    404
+                );
+            }
+        }
+
+        if (isset($input['petugas_id'])) {
+            $petugas = Petugas::find($input['petugas_id']);
+            if (!$petugas) {
+                return response()->json(
+                    [
+                        'status' => false,
+                        'message' => 'petugas not found'
+                    ],
+                    404
+                );
+            }
+        }
+
+        $pengembalian->update($input);
+        return response()->json(
+            [
+                'status' => true,
+                'data' => $pengembalian
+            ]
+        );
+    }
+
+    public function delete($id)
+    {
+        $pengembalian = Pengembalian::find($id);
+        if (!$pengembalian) {
+            return response()->json(
+                [
+                    'status' => false,
+                    'message' => 'pengembalina not found'
+                ],
+                404
+            );
+        }
+
+        $pengembalian->delete();
+        return response()->json(
+            [
+                'status' => true,
+                'data' => 'data succcessfully deleted'
+            ]
+        );
+    }
 }

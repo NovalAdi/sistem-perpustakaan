@@ -6,6 +6,8 @@ use App\Http\Controllers\API\PeminjamanController;
 use App\Http\Controllers\API\PeminjamanDetailController;
 use App\Http\Controllers\API\PenerbitController;
 use App\Http\Controllers\API\PengarangController;
+use App\Http\Controllers\API\PengembalianController;
+use App\Http\Controllers\API\PengembalianDetailController;
 use App\Http\Controllers\API\PetugasController;
 use App\Http\Controllers\API\RakController;
 use App\Models\Anggota;
@@ -50,3 +52,11 @@ Route::get('/peminjaman/{id}', [PeminjamanController::class, 'show']);
 Route::post('/peminjamandetail', [PeminjamanDetailController::class, 'create']);
 Route::get('/peminjamandetail', [PeminjamanDetailController::class, 'index']);
 Route::get('/peminjamandetail/{id}', [PeminjamanDetailController::class, 'show']);
+
+Route::post('/pengembalian', [PengembalianController::class, 'create']);
+Route::get('/pengembalian', [PengembalianController::class, 'index']);
+Route::get('/pengembalian/{id}', [PengembalianController::class, 'show']);
+
+Route::post('/pengembaliandetail', [PengembalianDetailController::class, 'create']);
+Route::get('/pengembaliandetail', [PengembalianDetailController::class, 'index']);
+Route::get('/pengembaliandetail/{id}', [PengembalianDetailController::class, 'show']);

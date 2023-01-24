@@ -71,4 +71,48 @@ class PetugasController extends Controller
             ]
         );
     }
+
+    public function update(Request $request, $id)
+    {
+        $petugas = Petugas::find($id);
+        if (!$petugas) {
+            return response()->json(
+                [
+                    'status' => false,
+                    'message' => 'petugas not found'
+                ],
+                404
+            );
+        }
+
+        $petugas->update($request->all());
+        return response()->json(
+            [
+                'status' => true,
+                'data' => $petugas
+            ]
+        );
+    }
+
+    public function delete($id)
+    {
+        $petugas = Petugas::find($id);
+        if (!$petugas) {
+            return response()->json(
+                [
+                    'status' => false,
+                    'message' => 'petugas not found'
+                ],
+                404
+            );
+        }
+
+        $petugas->delete();
+        return response()->json(
+            [
+                'status' => true,
+                'data' => 'data succcessfully deleted'
+            ]
+        );
+    }
 }

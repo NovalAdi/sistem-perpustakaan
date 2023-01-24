@@ -28,6 +28,8 @@ use Illuminate\Support\Facades\Route;
 Route::post('/petugas', [PetugasController::class, 'create']);
 Route::get('/petugas', [PetugasController::class, 'index']);
 Route::get('/petugas/{id}', [PetugasController::class, 'show']);
+Route::post('/petugas/update/{id}', [PetugasController::class, 'update']);
+Route::delete('/petugas/{id}', [PetugasController::class, 'delete']);
 
 Route::post('/pengarang', [PengarangController::class, 'create']);
 Route::get('/pengarang', [PengarangController::class, 'index']);

@@ -44,13 +44,13 @@ class BukusController extends Controller
     {
         $input = $request->all();
         $rules = [
-            'judul' =>'required',
+            'judul' => 'required',
             'tahun_terbit' => 'required',
-            'jumlah' =>'required',
-            'isbn' =>'required',
-            'pengarang_id' =>'required',
-            'penerbit_id' =>'required',
-            'rak_id' =>'required'
+            'jumlah' => 'required',
+            'isbn' => 'required',
+            'pengarang_id' => 'required',
+            'penerbit_id' => 'required',
+            'rak_id' => 'required'
         ];
 
         $validator = Validator::make($input, $rules);
@@ -131,37 +131,43 @@ class BukusController extends Controller
             );
         }
 
-        $pengarang = Pengarang::find($buku->pengarang_id);
-        if (!$pengarang) {
-            return response()->json(
-                [
-                    'status' => false,
-                    'message' => 'pengarang not found'
-                ],
-                404
-            );
+        if (isset($input['pengarang_id'])) {
+            $pengarang = Pengarang::find($input['pengarang_id']);
+            if (!$pengarang) {
+                return response()->json(
+                    [
+                        'status' => false,
+                        'message' => 'pengarang not found'
+                    ],
+                    404
+                );
+            }
         }
 
-        $penerbit = Penerbit::find($buku->penerbit_id);
-        if (!$penerbit) {
-            return response()->json(
-                [
-                    'status' => false,
-                    'message' => 'penerbit not found'
-                ],
-                404
-            );
+        if (isset($input['rak_id'])) {
+            $rak = Rak::find($input['rak_id']);
+            if (!$rak) {
+                return response()->json(
+                    [
+                        'status' => false,
+                        'message' => 'rak not found'
+                    ],
+                    404
+                );
+            }
         }
 
-        $rak = Rak::find($buku->rak_id);
-        if (!$rak) {
-            return response()->json(
-                [
-                    'status' => false,
-                    'message' => 'rak not found'
-                ],
-                404
-            );
+        if (isset($input['penerbit_id'])) {
+            $penerbit = Penerbit::find($input['penerbit_id']);
+            if (!$penerbit) {
+                return response()->json(
+                    [
+                        'status' => false,
+                        'message' => 'penerbit not found'
+                    ],
+                    404
+                );
+            }
         }
 
         $buku->update($input);
@@ -194,5 +200,4 @@ class BukusController extends Controller
             ]
         );
     }
-
 }

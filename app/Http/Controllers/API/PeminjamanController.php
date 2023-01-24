@@ -97,4 +97,76 @@ class PeminjamanController extends Controller
             ]
         );
     }
+
+    public function update(Request $request, $id)
+    {
+        $input = $request->all();
+
+        $peminjaman = Peminjaman::find($id);
+        if (!$peminjaman) {
+            return response()->json(
+                [
+                    'status' => false,
+                    'message' => 'peminjaman not found'
+                ],
+                404
+            );
+        }
+
+        if (isset($input['anggota_id'])) {
+            $anggota = Anggota::find($input['anggota_id']);
+            if (!$anggota) {
+                return response()->json(
+                    [
+                        'status' => false,
+                        'message' => 'anggota not found'
+                    ],
+                    404
+                );
+            }
+        }
+
+        if (isset($input['petugas_id'])) {
+            $petugas = Petugas::find($input['petugas_id']);
+            if (!$petugas) {
+                return response()->json(
+                    [
+                        'status' => false,
+                        'message' => 'petugas not found'
+                    ],
+                    404
+                );
+            }
+        }
+
+        $peminjaman->update($input);
+        return response()->json(
+            [
+                'status' => true,
+                'data' => $peminjaman
+            ]
+        );
+    }
+
+    public function delete($id)
+    {
+        $peminjaman = Peminjaman::find($id);
+        if (!$peminjaman) {
+            return response()->json(
+                [
+                    'status' => false,
+                    'message' => 'peminjaman not found'
+                ],
+                404
+            );
+        }
+
+        $peminjaman->delete();
+        return response()->json(
+            [
+                'status' => true,
+                'data' => 'data succcessfully deleted'
+            ]
+        );
+    }
 }

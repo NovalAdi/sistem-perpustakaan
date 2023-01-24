@@ -56,6 +56,8 @@ Route::delete('/anggota/{id}', [AnggotaController::class, 'delete']);
 Route::post('/peminjaman', [PeminjamanController::class, 'create']);
 Route::get('/peminjaman', [PeminjamanController::class, 'index']);
 Route::get('/peminjaman/{id}', [PeminjamanController::class, 'show']);
+Route::post('/peminjaman/update/{id}', [PeminjamanController::class, 'update']);
+Route::delete('/peminjaman/{id}', [PeminjamanController::class, 'delete']);
 
 Route::post('/peminjamandetail', [PeminjamanDetailController::class, 'create']);
 Route::get('/peminjamandetail', [PeminjamanDetailController::class, 'index']);

@@ -41,6 +41,50 @@ class AnggotaController extends Controller
         );
     }
 
+    public function update(Request $request, $id)
+    {
+        $anggota = Anggota::find($id);
+        if (!$anggota) {
+            return response()->json(
+                [
+                    'status' => false,
+                    'message' => 'anggota not found'
+                ],
+                404
+            );
+        }
+
+        $anggota->update($request->all());
+        return response()->json(
+            [
+                'status' => true,
+                'data' => $anggota
+            ]
+        );
+    }
+
+    public function delete($id)
+    {
+        $anggota = Anggota::find($id);
+        if (!$anggota) {
+            return response()->json(
+                [
+                    'status' => false,
+                    'message' => 'anggota not found'
+                ],
+                404
+            );
+        }
+
+        $anggota->delete();
+        return response()->json(
+            [
+                'status' => true,
+                'data' => 'data succcessfully deleted'
+            ]
+        );
+    }
+
     public function create(Request $request)
     {
         $input = $request->all();

@@ -115,4 +115,84 @@ class BukusController extends Controller
             ]
         );
     }
+
+    public function update(Request $request, $id)
+    {
+        $input = $request->all();
+
+        $buku = Buku::find($id);
+        if (!$buku) {
+            return response()->json(
+                [
+                    'status' => false,
+                    'message' => 'buku not found'
+                ],
+                404
+            );
+        }
+
+        $pengarang = Pengarang::find($buku->pengarang_id);
+        if (!$pengarang) {
+            return response()->json(
+                [
+                    'status' => false,
+                    'message' => 'pengarang not found'
+                ],
+                404
+            );
+        }
+
+        $penerbit = Penerbit::find($buku->penerbit_id);
+        if (!$penerbit) {
+            return response()->json(
+                [
+                    'status' => false,
+                    'message' => 'penerbit not found'
+                ],
+                404
+            );
+        }
+
+        $rak = Rak::find($buku->rak_id);
+        if (!$rak) {
+            return response()->json(
+                [
+                    'status' => false,
+                    'message' => 'rak not found'
+                ],
+                404
+            );
+        }
+
+        $buku->update($input);
+        return response()->json(
+            [
+                'status' => true,
+                'data' => $buku
+            ]
+        );
+    }
+
+    public function delete($id)
+    {
+        $buku = Buku::find($id);
+        if (!$buku) {
+            return response()->json(
+                [
+                    'status' => false,
+                    'message' => 'buku not found'
+                ],
+                404
+            );
+        }
+
+        $buku->delete();
+        return response()->json(
+            [
+                'status' => true,
+                'data' => 'data succcessfully deleted'
+            ]
+        );
+    }
+
 }

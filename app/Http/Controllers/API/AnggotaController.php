@@ -41,6 +41,36 @@ class AnggotaController extends Controller
         );
     }
 
+    public function create(Request $request)
+    {
+        $input = $request->all();
+        $rules = [
+            'nama' => 'required',
+            'jenis_kelamin' => 'required',
+            'alamat' => 'required',
+            'telp' => 'required'
+        ];
+
+        $validator = Validator::make($input, $rules);
+        if ($validator->fails()) {
+            return response()->json(
+                [
+                    'status' => false,
+                    'message' => $validator->errors()
+                ],
+                400
+            );
+        }
+
+        $anggota = Anggota::create($input);
+        return response()->json(
+            [
+                'status' => true,
+                'data' => $anggota,
+            ]
+        );
+    }
+
     public function update(Request $request, $id)
     {
         $anggota = Anggota::find($id);
@@ -85,33 +115,4 @@ class AnggotaController extends Controller
         );
     }
 
-    public function create(Request $request)
-    {
-        $input = $request->all();
-        $rules = [
-            'nama' => 'required',
-            'jenis_kelamin' => 'required',
-            'alamat' => 'required',
-            'telp' => 'required'
-        ];
-
-        $validator = Validator::make($input, $rules);
-        if ($validator->fails()) {
-            return response()->json(
-                [
-                    'status' => false,
-                    'message' => $validator->errors()
-                ],
-                400
-            );
-        }
-
-        $anggota = Anggota::create($input);
-        return response()->json(
-            [
-                'status' => true,
-                'data' => $anggota,
-            ]
-        );
-    }
 }

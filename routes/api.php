@@ -44,6 +44,8 @@ Route::get('/rak/{id}', [RakController::class, 'show']);
 Route::post('/buku', [BukusController::class, 'create']);
 Route::get('/buku', [BukusController::class, 'index']);
 Route::get('/buku/{id}', [BukusController::class, 'show']);
+Route::post('/buku/update/{id}', [BukusController::class, 'update']);
+Route::delete('/buku/{id}', [BukusController::class, 'delete']);
 
 Route::post('/anggota', [AnggotaController::class, 'create']);
 Route::get('/anggota', [AnggotaController::class, 'index']);

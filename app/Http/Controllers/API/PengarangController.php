@@ -59,4 +59,48 @@ class PengarangController extends Controller
             ]
         );
     }
+
+    public function update(Request $request, $id)
+    {
+        $pengarang = Pengarang::find($id);
+        if (!$pengarang) {
+            return response()->json(
+                [
+                    'status' => false,
+                    'message' => 'pengarang not found'
+                ],
+                404
+            );
+        }
+
+        $pengarang->update($request->all());
+        return response()->json(
+            [
+                'status' => true,
+                'data' => $pengarang
+            ]
+        );
+    }
+
+    public function delete($id)
+    {
+        $pengarang = Pengarang::find($id);
+        if (!$pengarang) {
+            return response()->json(
+                [
+                    'status' => false,
+                    'message' => 'pengarang not found'
+                ],
+                404
+            );
+        }
+
+        $pengarang->delete();
+        return response()->json(
+            [
+                'status' => true,
+                'data' => 'data succcessfully deleted'
+            ]
+        );
+    }
 }

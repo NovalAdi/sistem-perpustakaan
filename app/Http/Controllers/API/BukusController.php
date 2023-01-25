@@ -97,16 +97,6 @@ class BukusController extends Controller
             );
         }
 
-        // $buku = new Buku();
-        // $buku->judul = $input['judul'];
-        // $buku->tahun_terbit = $input['tahun_terbit'];
-        // $buku->jumlah = $input['jumlah'];
-        // $buku->isbn = $input['isbn'];
-
-        // $pengarang->bukus()->save($buku);
-        // $penerbit->bukus()->save($buku);
-        // $rak->bukus()->save($buku);
-
         $buku = Buku::create($input);
         return response()->json(
             [

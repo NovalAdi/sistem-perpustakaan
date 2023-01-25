@@ -1,0 +1,33 @@
+* {
+    text-decoration: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    padding: 2rem;
+    font-family: 'Rubik';
+}
+
+.action {
+    display: flex;
+}
+
+.table-head {
+    display: flex;
+    margin-top: 2rem;
+}
+
+.table-body {
+    display: flex;
+    margin-top: 1.5rem;
+}
+
+.table-title {
+    text-align: center;
+}
+
+.paging {
+    margin-top: 4rem;
+}
